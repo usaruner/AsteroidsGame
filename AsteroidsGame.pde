@@ -1,16 +1,118 @@
-//your variable declarations here
+SpaceShip a;
+//stars [] b;
+stars b;
 public void setup() 
 {
-  //your code here
+  size(800,800);
+// b = new stars[100];
+// for(int i = 0;i < b.length;i++){
+   // b[i] = new stars();
+  }
+ a = new SpaceShip();
+ b = new star();
 }
 public void draw() 
-{
-  //your code here
+{ 
+   background(0);
+ // for(int j = 0;j < b.length;j++){
+ //   b[j].show();
+ // }
+ // b[5].show();
+  fill(250,250,0);
+  b.show();
+  a.show();
+  a.move();
+  
 }
-class SpaceShip //extends Floater  
+public void keyPressed() {
+  
+if (key == CODED) {
+    if (keyCode == LEFT) {
+      a.rotate(-10);
+    }
+    if (keyCode == RIGHT){
+      a.rotate(10);
+    }
+    if (keyCode == UP) {
+      a.accelerate(.5);
+    }
+    if (keyCode == DOWN){
+      a.accelerate(-.5);
+    }
+   }
+    if(key == 'w'){
+     a.warp();
+     
+   }
+}
+
+class SpaceShip extends Floater  
 {   
-    //your code here
+  SpaceShip(){
+corners = 5;  
+int[] xS = {16,-8,-2,-8,16};   
+int[] yS = {0,8,0,-8,0};
+xCorners = xS;
+yCorners = yS;
+myColor = 255;   
+myCenterX = 400;
+myCenterY = 400; 
+myDirectionX = 0;
+myDirectionY = 0; 
+myPointDirection = 0;  
+    
+  
+  }
+  public void warp(){
+    myCenterX = Math.random()*800;
+    myCenterY = Math.random()*800; 
+    myDirectionX = 0;
+    myDirectionY = 0; 
+    myPointDirection = Math.random()*360;  
+    
+  }
+   public void setX(int x){myCenterX = x;}
+   public int getX(){return (int)myCenterX;}   
+   public void setY(int y){myCenterY = y;}
+   public int getY(){return (int)myCenterY;}   
+   public void setDirectionX(double x){myDirectionX = x;}    
+   public double getDirectionX(){return myDirectionX;}     
+   public void setDirectionY(double y){myDirectionY = y;}      
+   public double getDirectionY(){return myDirectionY;}   
+   public void setPointDirection(int degrees){myPointDirection = degrees;}   
+   public double getPointDirection(){return myPointDirection;} 
 }
+
+class stars extends Floater  
+{   
+  stars(){
+corners = 11;  
+int[] xS = {0,5,7,9,14,11,12,7,2,4,0};   
+int[] yS = {6,5,0,5,5,9,14,12,14,9,6};
+xCorners = xS;
+yCorners = yS;
+myColor = 25;   
+myCenterX =  Math.random()*800;
+myCenterY =  Math.random()*800; 
+myDirectionX = 0;
+myDirectionY = 0; 
+myPointDirection = 0;  
+    
+  
+  }
+
+   public void setX(int x){myCenterX = x;}
+   public int getX(){return (int)myCenterX;}   
+   public void setY(int y){myCenterY = y;}
+   public int getY(){return (int)myCenterY;}   
+   public void setDirectionX(double x){myDirectionX = x;}    
+   public double getDirectionX(){return myDirectionX;}     
+   public void setDirectionY(double y){myDirectionY = y;}      
+   public double getDirectionY(){return myDirectionY;}   
+   public void setPointDirection(int degrees){myPointDirection = degrees;}   
+   public double getPointDirection(){return myPointDirection;} 
+}
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -87,4 +189,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
