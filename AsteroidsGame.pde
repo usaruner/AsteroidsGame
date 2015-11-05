@@ -7,9 +7,9 @@ public void setup()
 // b = new stars[100];
 // for(int i = 0;i < b.length;i++){
    // b[i] = new stars();
-  }
+ // }
  a = new SpaceShip();
- b = new star();
+ b = new stars();
 }
 public void draw() 
 { 
