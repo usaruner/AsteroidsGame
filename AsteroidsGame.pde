@@ -13,10 +13,8 @@ public void setup() {
     b[i] = new stars();
     
   }
-  
 //  for (int b = 0; b < c.length; b++) {
 //    c[b] = new astroid();
-    
 //  }
   a = new SpaceShip();
   c = new ArrayList <astroid>();
@@ -25,7 +23,7 @@ for(int j = 0; j < 10; j++){
   }
 }
 public void draw() {
-if (c.size() == 1) {
+if (c.size() == 0) {
     for(int j = 0; j < 10; j++){
     c.add(j, new astroid());
   } 
@@ -35,27 +33,27 @@ if (c.size() == 1) {
     b[j].show();
     
   }
-
 //  for (int b = 0; b < c.length; b++) {
 //    c[b].show();
 //   c[b].rotate(5);
-
-
 //  }
-    for (int b = 0; b < c.size(); b++) {
-
-    c.get(b).show();
-    c.get(b).move();
-
-    }
     
-  
   fill(250, 250, 0);
   a.show();
   a.move();
+  for (int b = 0; b < c.size(); b++) {
+    c.get(b).show();
+    c.get(b).move();
+  }
+  for (int f = 0; f < c.size(); f++) {
+if((int)dist(c.get(f).getX() ,c.get(f).getY(),a.getX(),a.getY()) <= 33)
+    {
+      c.remove(f);
+      
+    }
+  }
 
   
-
 }
 public void keyPressed() {
   
@@ -78,7 +76,7 @@ public void keyPressed() {
 
   }
   if (key == 'x') {
-    c.remove(1);
+    c.remove(0);
 
   }
 }
