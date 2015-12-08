@@ -9,7 +9,7 @@ public void setup() {
   b = new stars[100];
   // c = new astroid[5];
 
-  for (int i = 0; i < b.length; i++) {
+  for (int i = 0; i < 100; i++) {
     b[i] = new stars();
     
   }
@@ -30,7 +30,7 @@ public void draw() {
     } 
   }
   background(0);
-  for (int j = 0; j < b.length; j++) {
+  for (int j = 0; j < 100; j++) {
     b[j].show();
     
   }
