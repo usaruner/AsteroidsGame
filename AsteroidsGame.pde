@@ -1,59 +1,58 @@
 SpaceShip a;
 stars[] b;
 ArrayList <astroid> c;
-
+ArrayList <bullet> m;
 
 public void setup() {
 
   size(800, 800);
   b = new stars[100];
- // c = new astroid[5];
+  // c = new astroid[5];
 
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < b.length; i++) {
     b[i] = new stars();
     
   }
-//  for (int b = 0; b < 5; b++) {
-//    c[b] = new astroid();
-//  }
+  //  for (int b = 0; b < c.length; b++) {
+  //    c[b] = new astroid();
+  //  }
   a = new SpaceShip();
   c = new ArrayList <astroid>();
-for(int j = 0; j < 10; j++){
+  for(int j = 0; j < 10; j++){
     c.add(j, new astroid());
   }
+   m = new ArrayList <bullet>();
 }
 public void draw() {
-if (c.size() == 0) {
+  if (c.size() == 0) {
     for(int j = 0; j < 10; j++){
     c.add(j, new astroid());
-  } 
-    }
+    } 
+  }
   background(0);
-  for (int j = 0; j < 100; j++) {
+  for (int j = 0; j < b.length; j++) {
     b[j].show();
     
   }
-//  for (int b = 0; b < 5; b++) {
-//    c[b].show();
-//   c[b].rotate(5);
-//  }
-    
-  fill(250, 250, 0);
-  a.show();
-  a.move();
+  //  for (int b = 0; b < c.length; b++) {
+  //    c[b].show();
+  //   c[b].rotate(5);
+  //  }
   for (int b = 0; b < c.size(); b++) {
     c.get(b).show();
     c.get(b).move();
   }
+
   for (int f = 0; f < c.size(); f++) {
-if((int)dist(c.get(f).getX() ,c.get(f).getY(),a.getX(),a.getY()) <= 33)
+  if((int)dist(c.get(f).getX() ,c.get(f).getY(),a.getX(),a.getY()) <= 33)
     {
       c.remove(f);
       
     }
   }
-
-  
+  fill(250, 250, 0);
+  a.show();
+  a.move();
 }
 public void keyPressed() {
   
@@ -76,11 +75,19 @@ public void keyPressed() {
 
   }
   if (key == 'x') {
-    c.remove(0);
+    for (int h = 0;h < 10; h++) {   
+    m.add(h, new bullet(a));
+    }
+    for (int h = 0; h < m.size(); h++) {
+
+    m.get(h).show();
+    m.get(h).move();
+    m.get(h).accelerate(5);
+
+    }
 
   }
 }
-
 class SpaceShip extends Floater {
   SpaceShip() {
     corners = 5;
@@ -138,7 +145,6 @@ class SpaceShip extends Floater {
     return myPointDirection;
   }
 }
-
 class stars extends Floater {
   stars() {
     corners = 11;
@@ -217,6 +223,57 @@ class astroid extends Floater {
   {
     rotate(rotSpeed);
     super.move();
+  }
+  public void setX(int x) {
+    myCenterX = x;
+  }
+  public int getX() {
+    return (int) myCenterX;
+  }
+  public void setY(int y) {
+    myCenterY = y;
+  }
+  public int getY() {
+    return (int) myCenterY;
+  }
+  public void setDirectionX(double x) {
+    myDirectionX = x;
+  }
+  public double getDirectionX() {
+    return myDirectionX;
+  }
+  public void setDirectionY(double y) {
+    myDirectionY = y;
+  }
+  public double getDirectionY() {
+    return myDirectionY;
+  }
+  public void setPointDirection(int degrees) {
+    myPointDirection = degrees;
+  }
+  public double getPointDirection() {
+    return myPointDirection;
+  }
+}
+class bullet extends Floater{
+  bullet(SpaceShip a){ 
+    double dRadians = myPointDirection*(Math.PI/180);
+    corners = 4;
+    int[] xS = {
+      -5, -5, 5, 5
+    };
+    int[] yS = {
+      2, -2, -2, 2
+    };
+    xCorners = xS;
+    yCorners = yS;
+    myColor = 255;
+    myCenterX = a.getX();
+    myCenterY = a.getY();
+    myDirectionX = 5 * Math.cos(dRadians) +  a.getDirectionX();
+    myDirectionY = 5 * Math.cos(dRadians) +  a.getDirectionY();
+    myPointDirection = a.getPointDirection();
+
   }
   public void setX(int x) {
     myCenterX = x;
