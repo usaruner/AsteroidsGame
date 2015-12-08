@@ -9,11 +9,11 @@ public void setup() {
   b = new stars[100];
   // c = new astroid[5];
 
-  for (int i = 0; i < 101; i++) {
+  for (int i = 1; i < 100; i++) {
     b[i] = new stars();
     
   }
-  //  for (int b = 0; b < 5; b++) {
+  //  for (int b = 1; b < 5; b++) {
   //    c[b] = new astroid();
   //  }
   a = new SpaceShip();
