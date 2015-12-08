@@ -30,8 +30,8 @@ public void draw() {
     } 
   }
   background(0);
-  for (int j = 0; j < 101; j++) {
-    b[j].show();
+  for (int z = 0; z < 101; z++) {
+    b[z].show();
     
   }
   //  for (int b = 0; b < 5; b++) {
