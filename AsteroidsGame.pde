@@ -9,32 +9,32 @@ public void setup() {
   b = new stars[100];
   // c = new astroid[5];
 
-  for (int i = 1; i < 100; i++) {
+  for (int i = 0; i < b.length; i++) {
     b[i] = new stars();
     
   }
-  //  for (int b = 1; b < 5; b++) {
+  //  for (int b = 0; b < c.length; b++) {
   //    c[b] = new astroid();
   //  }
   a = new SpaceShip();
   c = new ArrayList <astroid>();
-  for(int j = 0; j < 11; j++){
+  for(int j = 0; j < 10; j++){
     c.add(j, new astroid());
   }
    m = new ArrayList <bullet>();
 }
 public void draw() {
   if (c.size() == 0) {
-    for(int j = 0; j < 11; j++){
+    for(int j = 0; j < 10; j++){
     c.add(j, new astroid());
     } 
   }
   background(0);
-  for (int z = 0; z < 101; z++) {
-    b[z].show();
+  for (int j = 0; j < b.length; j++) {
+    b[j].show();
     
   }
-  //  for (int b = 0; b < 5; b++) {
+  //  for (int b = 0; b < c.length; b++) {
   //    c[b].show();
   //   c[b].rotate(5);
   //  }
