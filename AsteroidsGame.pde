@@ -13,7 +13,7 @@ public void setup() {
     b[i] = new stars();
     
   }
-  //  for (int b = 0; b < c.length; b++) {
+  //  for (int b = 0; b < 5; b++) {
   //    c[b] = new astroid();
   //  }
   a = new SpaceShip();
@@ -34,7 +34,7 @@ public void draw() {
     b[j].show();
     
   }
-  //  for (int b = 0; b < c.length; b++) {
+  //  for (int b = 0; b < 5; b++) {
   //    c[b].show();
   //   c[b].rotate(5);
   //  }
