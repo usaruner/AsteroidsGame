@@ -9,7 +9,7 @@ public void setup() {
   b = new stars[100];
   // c = new astroid[5];
 
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 101; i++) {
     b[i] = new stars();
     
   }
@@ -18,19 +18,19 @@ public void setup() {
   //  }
   a = new SpaceShip();
   c = new ArrayList <astroid>();
-  for(int j = 0; j < 10; j++){
+  for(int j = 0; j < 11; j++){
     c.add(j, new astroid());
   }
    m = new ArrayList <bullet>();
 }
 public void draw() {
   if (c.size() == 0) {
-    for(int j = 0; j < 10; j++){
+    for(int j = 0; j < 11; j++){
     c.add(j, new astroid());
     } 
   }
   background(0);
-  for (int j = 0; j < 100; j++) {
+  for (int j = 0; j < 101; j++) {
     b[j].show();
     
   }
