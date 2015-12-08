@@ -9,11 +9,11 @@ public void setup() {
   b = new stars[100];
  // c = new astroid[5];
 
-  for (int i = 0; i < b.length; i++) {
+  for (int i = 0; i < 100; i++) {
     b[i] = new stars();
     
   }
-//  for (int b = 0; b < c.length; b++) {
+//  for (int b = 0; b < 5; b++) {
 //    c[b] = new astroid();
 //  }
   a = new SpaceShip();
@@ -29,11 +29,11 @@ if (c.size() == 0) {
   } 
     }
   background(0);
-  for (int j = 0; j < b.length; j++) {
+  for (int j = 0; j < 100; j++) {
     b[j].show();
     
   }
-//  for (int b = 0; b < c.length; b++) {
+//  for (int b = 0; b < 5; b++) {
 //    c[b].show();
 //   c[b].rotate(5);
 //  }
