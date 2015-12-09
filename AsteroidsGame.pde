@@ -22,7 +22,7 @@ public void draw() {
 
   if (aster.size() == 0) {
     for(int w = 0; w < 10; w++){
-    aster.add(j, new astroid());
+    aster.add(w, new astroid());
     } 
   }
   background(0);
@@ -30,7 +30,7 @@ public void draw() {
   ship.show();
   ship.move();
   for (int q = 0; q < str.length; q++) {
-    str[j].show();
+    str[q].show();
     
   }
   for (int h = 0; h < bull.size(); h++) {
@@ -40,9 +40,9 @@ public void draw() {
     
     
 
-  for (int r = 0; str < aster.size(); r++) {
-    aster.get(str).show();
-    aster.get(str).move();
+  for (int r = 0; r < aster.size(); r++) {
+    aster.get(r).show();
+    aster.get(r).move();
   }
   for (int d = 0; d < bull.size(); d++) {
   for (int f = 0; f < aster.size(); f++) {
@@ -77,8 +77,8 @@ public void keyPressed() {
   }
   if (key == 'x') {
   for (int t = 0;t < 1; t++) {   
-    bull.add(h, new bullet(ship));
-    bull.get(h).accelerate(20);
+    bull.add(t, new bullet(ship));
+    bull.get(t).accelerate(20);
     }
   
   }
