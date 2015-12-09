@@ -29,7 +29,7 @@ public void draw() {
   fill(250, 250, 0);
   ship.show();
   ship.move();
-  for (int j = 0; j < str.length; j++) {
+  for (int q = 0; q < str.length; q++) {
     str[j].show();
     
   }
