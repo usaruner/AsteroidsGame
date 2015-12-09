@@ -2,20 +2,15 @@ SpaceShip a;
 stars[] b;
 ArrayList <astroid> c;
 ArrayList <bullet> m;
-
 public void setup() {
 
   size(800, 800);
   b = new stars[100];
-  // c = new astroid[5];
 
   for (int i = 0; i < b.length; i++) {
     b[i] = new stars();
     
   }
-  //  for (int b = 0; b < c.length; b++) {
-  //    c[b] = new astroid();
-  //  }
   a = new SpaceShip();
   c = new ArrayList <astroid>();
   for(int j = 0; j < 10; j++){
@@ -34,20 +29,23 @@ public void draw() {
     b[j].show();
     
   }
-  //  for (int b = 0; b < c.length; b++) {
-  //    c[b].show();
-  //   c[b].rotate(5);
-  //  }
+  for (int h = 0; h < m.size(); h++) {
+    m.get(h).show();
+    m.get(h).move();
+  }
+    
+    
+
   for (int b = 0; b < c.size(); b++) {
     c.get(b).show();
     c.get(b).move();
   }
 
   for (int f = 0; f < c.size(); f++) {
+
   if((int)dist(c.get(f).getX() ,c.get(f).getY(),a.getX(),a.getY()) <= 33)
     {
       c.remove(f);
-      
     }
   }
   fill(250, 250, 0);
@@ -75,17 +73,11 @@ public void keyPressed() {
 
   }
   if (key == 'x') {
-    for (int h = 0;h < 10; h++) {   
+  for (int h = 0;h < 1; h++) {   
     m.add(h, new bullet(a));
+    m.get(h).accelerate(20);
     }
-    for (int h = 0; h < m.size(); h++) {
-
-    m.get(h).show();
-    m.get(h).move();
-    m.get(h).accelerate(5);
-
-    }
-
+  
   }
 }
 class SpaceShip extends Floater {
@@ -257,6 +249,7 @@ class astroid extends Floater {
 }
 class bullet extends Floater{
   bullet(SpaceShip a){ 
+    myPointDirection = a.getPointDirection();
     double dRadians = myPointDirection*(Math.PI/180);
     corners = 4;
     int[] xS = {
@@ -271,9 +264,13 @@ class bullet extends Floater{
     myCenterX = a.getX();
     myCenterY = a.getY();
     myDirectionX = 5 * Math.cos(dRadians) +  a.getDirectionX();
-    myDirectionY = 5 * Math.cos(dRadians) +  a.getDirectionY();
-    myPointDirection = a.getPointDirection();
-
+    myDirectionY = 5 * Math.sin(dRadians) +  a.getDirectionY();
+    
+  }
+   public void move() //move the floater in the current direction of travel
+  { 
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
   }
   public void setX(int x) {
     myCenterX = x;
