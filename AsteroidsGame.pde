@@ -1,81 +1,84 @@
-SpaceShip a;
-stars[] b;
-ArrayList <astroid> c;
-ArrayList <bullet> m;
+SpaceShip ship;
+stars[] str;
+ArrayList <astroid> aster;
+ArrayList <bullet> bull;
 public void setup() {
 
   size(800, 800);
-  b = new stars[100];
+  str = new stars[100];
 
-  for (int i = 0; i < b.length; i++) {
-    b[i] = new stars();
+  for (int i = 0; i < str.length; i++) {
+    str[i] = new stars();
     
   }
-  a = new SpaceShip();
-  c = new ArrayList <astroid>();
+  ship = new SpaceShip();
+  aster = new ArrayList <astroid>();
   for(int j = 0; j < 10; j++){
-    c.add(j, new astroid());
+    aster.add(j, new astroid());
   }
-   m = new ArrayList <bullet>();
+   bull = new ArrayList <bullet>();
 }
 public void draw() {
-  if (c.size() == 0) {
+
+  if (aster.size() == 0) {
     for(int j = 0; j < 10; j++){
-    c.add(j, new astroid());
+    aster.add(j, new astroid());
     } 
   }
   background(0);
-  for (int j = 0; j < b.length; j++) {
-    b[j].show();
+  fill(250, 250, 0);
+  ship.show();
+  ship.move();
+  for (int j = 0; j < str.length; j++) {
+    str[j].show();
     
   }
-  for (int h = 0; h < m.size(); h++) {
-    m.get(h).show();
-    m.get(h).move();
+  for (int h = 0; h < bull.size(); h++) {
+    bull.get(h).show();
+    bull.get(h).move();
   }
     
     
 
-  for (int h = 0; h < c.size(); h++) {
-    c.get(b).show();
-    c.get(b).move();
+  for (int str = 0; str < aster.size(); str++) {
+    aster.get(str).show();
+    aster.get(str).move();
   }
+  for (int d = 0; d < bull.size(); d++) {
+  for (int f = 0; f < aster.size(); f++) {
 
-  for (int f = 0; f < c.size(); f++) {
-
-  if((int)dist(c.get(f).getX() ,c.get(f).getY(),a.getX(),a.getY()) <= 33)
+  if((int)dist(aster.get(f).getX(),aster.get(f).getY(),bull.get(d).getX(),bull.get(d).getY()) <= 33)
     {
-      c.remove(f);
+      aster.remove(f);
     }
   }
-  fill(250, 250, 0);
-  a.show();
-  a.move();
+}
+
 }
 public void keyPressed() {
   
   if (key == CODED) {
     if (keyCode == LEFT) {
-      a.rotate(-10);
+      ship.rotate(-10);
     }
     if (keyCode == RIGHT) {
-      a.rotate(10);
+      ship.rotate(10);
     }
     if (keyCode == UP) {
-      a.accelerate(.5);
+      ship.accelerate(.5);
     }
     if (keyCode == DOWN) {
-      a.accelerate(-.5);
+      ship.accelerate(-.5);
     }
   }
   if (key == 'z') {
-    a.warp();
+    ship.warp();
 
   }
   if (key == 'x') {
   for (int h = 0;h < 1; h++) {   
-    m.add(h, new bullet(a));
-    m.get(h).accelerate(20);
+    bull.add(h, new bullet(ship));
+    bull.get(h).accelerate(20);
     }
   
   }
@@ -248,8 +251,8 @@ class astroid extends Floater {
   }
 }
 class bullet extends Floater{
-  bullet(SpaceShip a){ 
-    myPointDirection = a.getPointDirection();
+  bullet(SpaceShip ship){ 
+    myPointDirection = ship.getPointDirection();
     double dRadians = myPointDirection*(Math.PI/180);
     corners = 4;
     int[] xS = {
@@ -261,10 +264,10 @@ class bullet extends Floater{
     xCorners = xS;
     yCorners = yS;
     myColor = 255;
-    myCenterX = a.getX();
-    myCenterY = a.getY();
-    myDirectionX = 5 * Math.cos(dRadians) +  a.getDirectionX();
-    myDirectionY = 5 * Math.sin(dRadians) +  a.getDirectionY();
+    myCenterX = ship.getX();
+    myCenterY = ship.getY();
+    myDirectionX = 5 * Math.cos(dRadians) +  ship.getDirectionX();
+    myDirectionY = 5 * Math.sin(dRadians) +  ship.getDirectionY();
     
   }
    public void move() //move the floater in the current direction of travel
