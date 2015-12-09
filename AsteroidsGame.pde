@@ -36,7 +36,7 @@ public void draw() {
     
     
 
-  for (int b = 0; b < c.size(); b++) {
+  for (int h = 0; h < c.size(); h++) {
     c.get(b).show();
     c.get(b).move();
   }
