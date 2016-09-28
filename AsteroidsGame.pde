@@ -1,14 +1,22 @@
 SpaceShip ship;
 stars[] str;
+ArrayList < astroid > aster;
+ArrayList < bullet > bull;
 int hscore = 0;
 int health = 100;
 int score = 0;
-ArrayList < astroid > aster;
-ArrayList < bullet > bull;
-public void setup() {
-
+int s = 50; // menu start button
+int o = 50; // menu option button 
+int c = 50; // menu credits button
+int v1 = 600; // volume
+int d = 1; // difficulty
+boolean startgame = false; // start screen
+boolean startoptions = false; // option screen
+boolean startcredits = false; // credits screen
+boolean home = true; // home screen
+void setup() {
     size(800, 800);
-    str = new stars[100];
+     str = new stars[100];
     ship = new SpaceShip();
     for (int i = 0; i < str.length; i++) {
         str[i] = new stars();
@@ -18,16 +26,128 @@ public void setup() {
         aster.add(j, new astroid());
     }
     bull = new ArrayList < bullet > ();
+
 }
-public void draw() {
+
+void draw() {
+    if (home) {
+
+        homescreen();
+
+    }
+    if (startgame) {
+
+        entergame();
+
+    }
+
+    if (startoptions) {
+
+        options();
+
+    }
+
+
+    if (startcredits) {
+
+        credits();
+
+    }
+
+
+}
+public void keyPressed() {
+
+    if (key == CODED) {
+        if (keyCode == LEFT) {
+            ship.rotate(-10);
+        }
+        if (keyCode == RIGHT) {
+            ship.rotate(10);
+        }
+        if (keyCode == UP) {
+            ship.accelerate(.5);
+        }
+        if (keyCode == DOWN) {
+            ship.accelerate(-.5);
+        }
+    }
+    if (key == 'z') {
+        ship.warp();
+
+    }
+    if (key == 'x') {
+        for (int t = 0; t < 1; t++) {
+            bull.add(t, new bullet(ship));
+            bull.get(t).accelerate(20);
+        }
+
+    }
+    if (key == 'a') {
+      textSize(14);
+      text("HighScore " + hscore , 400, 50);
+    }
+}
+void homescreen() { //homescreen
+
+    background(0, 0, 0);
+
+    fill(255, 255, 255);
+
+    textSize(160);
+    text("Astroids", 100, 160);
+
+    textSize(s);
+    text("Start", 100, 420);
+
+    textSize(o);
+    text("Options", 100, 520);
+
+    textSize(c);
+    text("Credits", 100, 620);
+
+    if (mouseX < 210 && mouseX > 100 && mouseY < 420 && mouseY > 390) {
+        s = 55;
+        if (mousePressed == true) {
+            startgame = true;
+            boolean home = false;
+        }
+    } else {
+        s = 50;
+    }
+
+    if (mouseX < 290 && mouseX > 100 && mouseY < 520 && mouseY > 490) {
+        o = 55;
+        if (mousePressed == true) {
+            startoptions = true;
+            boolean home = false;
+        }
+    } else {
+        o = 50;
+    }
+
+    if (mouseX < 270 && mouseX > 100 && mouseY < 620 && mouseY > 575) {
+        c = 55;
+        if (mousePressed == true) {
+            startcredits = true;
+            boolean home = false;
+        }
+    } else {
+        c = 50;
+    }
+}
+
+void entergame() { // gameplay
     background(0);
     fill(250, 250, 0);
     text("Score " + score , 15, 780);
-    text("HP " + health , 760, 780);
-    print(health);
+    text("HP " + health , 625, 780);
+    
     if (health <= 0){
       if (score > hscore ){
         hscore = score;
+
+        
       }
       score = 0;
       health = 100;
@@ -36,6 +156,8 @@ public void draw() {
       ship.setDirectionX(0);
       ship.setDirectionY(0);
       ship.setPointDirection(0);
+      startgame = false;
+      home = true;
 
     }
     if (aster.size() == 0) {
@@ -83,40 +205,104 @@ public void draw() {
 
             }
     }
-    
 
 }
-public void keyPressed() {
 
-    if (key == CODED) {
-        if (keyCode == LEFT) {
-            ship.rotate(-10);
-        }
-        if (keyCode == RIGHT) {
-            ship.rotate(10);
-        }
-        if (keyCode == UP) {
-            ship.accelerate(.5);
-        }
-        if (keyCode == DOWN) {
-            ship.accelerate(-.5);
-        }
-    }
-    if (key == 'z') {
-        ship.warp();
+void options() { // options
+    background(0, 0, 0);
 
-    }
-    if (key == 'x') {
-        for (int t = 0; t < 1; t++) {
-            bull.add(t, new bullet(ship));
-            bull.get(t).accelerate(20);
+    textSize(50);
+    text("Options", 100, 100);
+
+    textSize(30);
+    text("Difficulty", 100, 300);    //difficulty
+
+    text("Easy", 300, 300);
+
+    if (mouseY < 300 && mouseY > 260 && mouseX > 300 && mouseX < 410) {
+
+        stroke(255, 255, 255);
+
+        strokeWeight(5);
+
+        line(300, 320, 380, 320);
+
+        if (mousePressed == true) {
+            d = 1;
         }
 
     }
-    if (key == 'a') {
-      textSize(14);
-      text("HighScore " + hscore , 400, 50);
+    text("Normal", 450, 300);
+
+    if (mouseY < 300 && mouseY > 260 && mouseX > 450 && mouseX < 620) {
+
+        stroke(255, 255, 255);
+
+        strokeWeight(5);
+
+        line(450, 320, 550, 320);
+
+        if (mousePressed == true) {
+            d = 2;
+        }
+
     }
+    text("Hard", 675, 300);
+
+    if (mouseY < 300 && mouseY > 260 && mouseX > 675 && mouseX < 785) {
+
+        stroke(255, 255, 255);
+
+        strokeWeight(5);
+
+        line(675, 320, 750, 320);
+
+        if (mousePressed == true) {
+            d = 3;
+        }
+
+    }
+
+    textSize(40);
+    text("Volume", 100, 500);        //volume
+
+    for (int v = 370; v < v1; v = v + 25) {
+        strokeWeight(1);
+        rect(v, 450, 10, 40);
+    }
+    
+    text("-", 280, 490);
+    
+    if (mouseY > 450 && mouseY < 490 && mouseX > 280 && mouseX < 320) {
+        if (mousePressed == true) {
+            if (v1 > 0 ) {
+                v1 = v1 - 10;
+            }
+        } else {
+            v1 = v1;
+
+        }
+
+
+    }
+    
+    text("+", 655, 490);
+    
+    if (mouseY > 450 && mouseY < 490 && mouseX > 655 && mouseX < 715) {
+        if (mousePressed == true) {
+            if (v1 <= 600) {
+                v1 = v1 + 10;
+            }
+        } else {
+            v1 = v1;
+
+        }
+
+    }
+    text("Highscore", 100, 700);
+
+    textSize(40);
+    text("Back", 400, 700);
 }
 class SpaceShip extends Floater {
     SpaceShip() {
@@ -453,4 +639,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
             }
             endShape(CLOSE);
         }
+}
+void credits() {
+    background(0, 0, 0);
 }
