@@ -174,18 +174,22 @@ void entergame() { // gameplay
             health= health -1;
         }
     }
-        if (keyCode == LEFT) {
+        if (keyCode == LEFT && keyPressed == true) 
             ship.rotate(-10);
-        }
-        if (keyCode == RIGHT) {
+        else 
+            ship.rotate(0);
+        if (keyCode == RIGHT && keyPressed == true) 
             ship.rotate(10);
-        }
-        if (keyCode == UP) {
+        else 
+            ship.rotate(0);        
+        if (keyCode == UP && keyPressed == true) 
             ship.accelerate(.5);
-        }
-        if (keyCode == DOWN) {
+        else 
+            ship.rotate(0);
+        if (keyCode == DOWN && keyPressed == true) 
             ship.accelerate(-.5);
-        }
+        else 
+            ship.rotate(0);
         for (int f = 0; f < aster.size(); f++) {
           for (int d = 0; d < bull.size(); d++) {
 
