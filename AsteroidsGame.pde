@@ -56,22 +56,10 @@ void draw() {
 
 
 }
-public void keyPressed() {
 
-    if (key == CODED) {
-        if (keyCode == LEFT) {
-            ship.rotate(-10);
-        }
-        if (keyCode == RIGHT) {
-            ship.rotate(10);
-        }
-        if (keyCode == UP) {
-            ship.accelerate(.5);
-        }
-        if (keyCode == DOWN) {
-            ship.accelerate(-.5);
-        }
-    }
+
+   
+public void keyPressed() {
     if (key == 'z') {
         ship.warp();
 
@@ -186,7 +174,18 @@ void entergame() { // gameplay
             health= health -1;
         }
     }
-    
+        if (keyCode == LEFT) {
+            ship.rotate(-10);
+        }
+        if (keyCode == RIGHT) {
+            ship.rotate(10);
+        }
+        if (keyCode == UP) {
+            ship.accelerate(.5);
+        }
+        if (keyCode == DOWN) {
+            ship.accelerate(-.5);
+        }
         for (int f = 0; f < aster.size(); f++) {
           for (int d = 0; d < bull.size(); d++) {
 
