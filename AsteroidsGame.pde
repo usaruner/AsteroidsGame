@@ -58,24 +58,6 @@ void draw() {
 }
 
 
-   
-public void keyPressed() {
-    if (key == 'z') {
-        ship.warp();
-
-    }
-    if (key == 'x') {
-        for (int t = 0; t < 1; t++) {
-            bull.add(t, new bullet(ship));
-            bull.get(t).accelerate(20);
-        }
-
-    }
-    if (key == 'a') {
-      textSize(14);
-      text("HighScore " + hscore , 400, 50);
-    }
-}
 void homescreen() { //homescreen
 
     background(0, 0, 0);
@@ -190,6 +172,21 @@ void entergame() { // gameplay
             ship.accelerate(-.5);
         else 
             ship.rotate(0);
+            if (key == 'z') {
+        ship.warp();
+
+    }
+    if (key == 'x' && keyPressed == true) {
+        for (int t = 0; t < 1; t++) {
+            bull.add(t, new bullet(ship));
+            bull.get(t).accelerate(20);
+        }
+
+    }
+    if (key == 'a' && keyPressed == true) {
+      textSize(14);
+      text("HighScore " + hscore , 400, 50);
+    }
         for (int f = 0; f < aster.size(); f++) {
           for (int d = 0; d < bull.size(); d++) {
 
